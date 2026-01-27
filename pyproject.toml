@@ -1,0 +1,53 @@
+[project]
+name = "api-call"
+version = "0.1.0"
+description = "CLI tool for REST API testing with JWT, API key, and basic auth support"
+readme = "README.md"
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.10"
+authors = [
+    {name = "CGYLab"}
+]
+keywords = ["api", "rest", "cli", "testing", "jwt", "authentication"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "typer>=0.12.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/cgylab/api-call"
+Repository = "https://github.com/cgylab/api-call"
+Issues = "https://github.com/cgylab/api-call/issues"
+
+[project.scripts]
+api-call = "api_call.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/api_call"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+    "/LICENSE",
+]
