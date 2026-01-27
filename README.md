@@ -1,4 +1,4 @@
-# api-call
+# cc-api-call
 
 CLI tool for REST API testing with JWT, API key, and basic auth support.
 
@@ -14,13 +14,13 @@ CLI tool for REST API testing with JWT, API key, and basic auth support.
 
 ```bash
 # Using uvx (recommended, no install needed)
-uvx api-call status
+uvx cc-api-call status
 
 # Using pip
-pip install api-call
+pip install cc-api-call
 
 # Using uv
-uv tool install api-call
+uv tool install cc-api-call
 ```
 
 ## Quick Start
@@ -28,7 +28,7 @@ uv tool install api-call
 1. Run any command to auto-create config:
 
 ```bash
-uvx api-call status
+uvx cc-api-call status
 ```
 
 2. Edit `.claude/api-testing/.env` with your settings:
@@ -45,22 +45,22 @@ API_TEST_PASSWORD=yourpassword
 3. Login (JWT mode):
 
 ```bash
-uvx api-call login
+uvx cc-api-call login
 ```
 
 4. Make requests:
 
 ```bash
-uvx api-call get /users -r
-uvx api-call post /users -d '{"name":"John","email":"john@example.com"}' -r
-uvx api-call put /users/1 -d '{"name":"Jane"}' -r
-uvx api-call delete /users/1 -y
+uvx cc-api-call get /users -r
+uvx cc-api-call post /users -d '{"name":"John","email":"john@example.com"}' -r
+uvx cc-api-call put /users/1 -d '{"name":"Jane"}' -r
+uvx cc-api-call delete /users/1 -y
 ```
 
 ## Commands
 
 ```bash
-uvx api-call --help
+uvx cc-api-call --help
 ```
 
 | Command | Description |

@@ -22,7 +22,7 @@ from .client import ApiClient, print_response
 from .tokens import save_tokens, load_latest_token, is_token_expired
 
 app = typer.Typer(
-    name="api-call",
+    name="cc-api-call",
     help="CLI tool for REST API testing with JWT, API key, and basic auth support.",
     add_completion=False,
 )
@@ -350,7 +350,7 @@ def status():
         console.print(f"\n[bold]Token Status:[/bold]")
         entry = load_latest_token()
         if not entry:
-            console.print("  [yellow]No token. Run: api-call login[/yellow]")
+            console.print("  [yellow]No token. Run: cc-api-call login[/yellow]")
         else:
             console.print(f"  User:    {entry['user_email']}")
             console.print(f"  Expires: {entry['expires_at']}")
