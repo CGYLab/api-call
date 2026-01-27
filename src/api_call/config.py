@@ -10,7 +10,7 @@ CONFIG_DIR = Path.cwd() / ".claude" / "api-testing"
 
 # .env template
 ENV_TEMPLATE = """# API Testing Configuration
-# Documentation: https://github.com/cgylab/api-call
+# Documentation: https://github.com/CGYLab/api-call
 
 # Base Settings
 PORT=3000
