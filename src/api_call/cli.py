@@ -29,6 +29,34 @@ app = typer.Typer(
 console = Console()
 
 
+def version_callback(value: bool):
+    """Show version and exit."""
+    if value:
+        # Get version from package metadata
+        try:
+            from importlib.metadata import version
+            ver = version("cc-api-call")
+        except Exception:
+            ver = "unknown"
+        console.print(f"cc-api-call version {ver}")
+        raise typer.Exit()
+
+
+@app.callback()
+def main(
+    version: bool = typer.Option(
+        None,
+        "--version",
+        "-V",
+        help="Show version and exit",
+        callback=version_callback,
+        is_eager=True,
+    )
+):
+    """CLI tool for REST API testing."""
+    pass
+
+
 def parse_query_params(query_string: Optional[str]) -> Optional[dict]:
     """Parse query string into dict."""
     if not query_string:
