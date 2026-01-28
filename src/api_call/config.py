@@ -13,7 +13,7 @@ ENV_TEMPLATE = """# API Testing Configuration
 # Documentation: https://github.com/CGYLab/api-call
 
 # Base Settings
-PORT=3000
+BASE_URL=http://localhost:3000/api/v1
 AUTH_MODE=jwt  # jwt | api-key | basic | none
 
 # JWT Mode
@@ -73,8 +73,7 @@ if env_file.exists():
     load_dotenv(env_file)
 
 # API Configuration
-PORT = os.getenv("PORT", "3000")
-BASE_URL = f"http://localhost:{PORT}/api/v1"
+BASE_URL = os.getenv("BASE_URL", "http://localhost/api/v1").rstrip("/")
 
 # Auth Mode: jwt, api-key, basic, none
 AUTH_MODE = os.getenv("AUTH_MODE", "jwt").lower()

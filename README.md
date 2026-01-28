@@ -34,7 +34,7 @@ uvx cc-api-call status
 2. Edit `.claude/api-testing/.env` with your settings:
 
 ```env
-PORT=3000
+BASE_URL=http://localhost:3000/api/v1
 AUTH_MODE=jwt
 
 # For JWT mode
