@@ -57,6 +57,22 @@ def main(
     pass
 
 
+def fix_msys_path(endpoint: str) -> str:
+    """Fix MSYS/Git Bash path conversion on Windows.
+
+    Git Bash converts /api/v1/foo to C:/Program Files/Git/api/v1/foo.
+    This function detects and reverses that conversion.
+    """
+    import re
+    # Pattern: Drive letter followed by /Program Files/Git/ prefix
+    msys_pattern = r'^[A-Za-z]:[/\\]Program Files[/\\]Git([/\\].*)$'
+    match = re.match(msys_pattern, endpoint)
+    if match:
+        # Extract the original path and normalize slashes
+        return match.group(1).replace('\\', '/')
+    return endpoint
+
+
 def parse_query_params(query_string: Optional[str]) -> Optional[dict]:
     """Parse query string into dict."""
     if not query_string:
@@ -80,6 +96,7 @@ def get(
 ):
     """Make GET request to API endpoint."""
     require_setup()
+    endpoint = fix_msys_path(endpoint)
     try:
         client = ApiClient(use_auth=not no_auth)
         params = parse_query_params(query)
@@ -116,6 +133,7 @@ def post(
 ):
     """Make POST request to API endpoint."""
     require_setup()
+    endpoint = fix_msys_path(endpoint)
     try:
         json_data = None
         if data:
@@ -167,6 +185,7 @@ def put(
 ):
     """Make PUT request to API endpoint."""
     require_setup()
+    endpoint = fix_msys_path(endpoint)
     try:
         json_data = None
         if data:
@@ -217,6 +236,7 @@ def delete(
 ):
     """Make DELETE request to API endpoint."""
     require_setup()
+    endpoint = fix_msys_path(endpoint)
     try:
         if not yes:
             confirm = typer.confirm(f"Delete {endpoint}?")
